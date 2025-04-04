@@ -9,10 +9,14 @@
     <button id="Rock">Rock</button>
     <button id="Paper">Paper</button>
     <button id="Scissors">Scissors</button>
+    <div id="score"></div>
     <script>
             document.querySelector("#Rock").addEventListener("click", playGame);
             document.querySelector("#Paper").addEventListener("click", playGame);
             document.querySelector("#Scissors").addEventListener("click", playGame);
+            const score = document.querySelector("#score");
+            const scoreContent = document.createElement("p");
+            score.appendChild(scoreContent);
 
             let humanScore = 0;
             let computerScore = 0;
@@ -62,6 +66,24 @@
                         computerScore++;
                     }
             }
+            
+            updateScore();
+
+            function updateScore(){
+                scoreContent.textContent = `Your score: ${humanScore}
+                                        Computer score: ${computerScore}`;
+            }
+
+            if (humanScore === 5){
+                alert(`You win!`);
+                humanScore = 0;
+                computerScore = 0;
+            }else if(computerScore === 5){
+                alert(`You lose`);
+                humanScore = 0;
+                computerScore = 0;
+            }
+
         }
         const humanSelection = humanChoice;
         const computerSelection = getComputerChoice();
@@ -69,8 +91,7 @@
         playRound(humanSelection, computerSelection);
 
         }
-        console.log("Your score: " + humanScore);
-        console.log("Computer score: "+ computerScore);
+
     </script>
 </body>
 </html>
