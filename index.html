@@ -6,9 +6,17 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="Rock">Rock</button>
+    <button id="Paper">Paper</button>
+    <button id="Scissors">Scissors</button>
     <script>
+            document.querySelector("#Rock").addEventListener("click", playGame);
+            document.querySelector("#Paper").addEventListener("click", playGame);
+            document.querySelector("#Scissors").addEventListener("click", playGame);
+
             let humanScore = 0;
             let computerScore = 0;
+
         function getComputerChoice(){
             let computerChoice = Math.floor(Math.random()*3);
             if (computerChoice === 0){
@@ -20,18 +28,9 @@
             }
             return computerChoice;
         }
-        function getHumanChoice(){
-            let humanChoice = prompt("Rock, Paper, or Scissors?");
-            return humanChoice;
-        }
-
-        playGame();
-        playGame();
-        playGame();
-        playGame();
-        playGame();
         
-        function playGame(){
+        function playGame(e){
+            let humanChoice = e.target.textContent;
 
             function playRound(humanChoice, computerChoice){
             humanChoice = humanChoice.toLowerCase();
@@ -64,8 +63,9 @@
                     }
             }
         }
-        const humanSelection = getHumanChoice();
+        const humanSelection = humanChoice;
         const computerSelection = getComputerChoice();
+
         playRound(humanSelection, computerSelection);
 
         }
